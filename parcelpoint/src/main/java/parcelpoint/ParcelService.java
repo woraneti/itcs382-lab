@@ -42,19 +42,19 @@ public class ParcelService {
                 locker.setParcel(null);
                 parcel.markPickedUp();
                 saveToFile();
-                return fee(parcel, days);
+                return fee(parcel.getSize(), days);
             }
         }
         return 0;
     }
 
-    public double fee(Parcel parcel, int days) {
+    public double fee(int size, int days) {
         if (days <= 3) {
             return 0;
         }
-        if (parcel.getSize() == 1) {
+        if (size == 1) {
             return (days - 3) * 10.0;
-        } else if (parcel.getSize() == 2) {
+        } else if (size == 2) {
             return (days - 3) * 15.0;
         }
         return (days - 3) * 20.0;
