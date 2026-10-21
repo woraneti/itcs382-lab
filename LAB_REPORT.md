@@ -94,21 +94,45 @@ Table 3. What you did with each SonarQube issue in Table 1
 
 | No. in Table 1 | Fixed or kept | Commit, or the reason for keeping it |
 | --- | --- | --- |
-| 1 | | |
+| 1 | Kept | Kept, because printing in Main is the output of this command-line program |
+| 2 | Kept | Kept, because printing in Main is the output of this command-line program |
+| 3 | Kept | Kept, because printing in Main is the output of this command-line program |
+| 4 | Kept | Kept, because printing in Main is the output of this command-line program |
+| 5 | Fixed | d1217f6, the issue disappeared when the unused Date import was removed |
+| 6 | Fixed | d1217f6 |
+| 7 | Fixed | 5bd06b3 |
+| 8 | Kept | Kept, because this line simulates the SMS to the student, which the program shows on the screen, and the program has no logger |
+| 9 | Fixed | 3a1f138 |
+| 10 | Kept | Kept, because the staff report is command-line output that the staff member reads, and the program has no logger |
+| 11 | Kept | Kept, because the list of waiting parcels is command-line output that the student reads, and the program has no logger |
+| 12 | Fixed | 1257389 |
+| 13 | Fixed | b8b0265 |
 
-Number of SonarQube issues that remain after your fixes:
+Number of SonarQube issues that remain after your fixes: 7 (all java:S106, kept with the reasons above)
 
 The two design problems that you fixed
 
 | Design problem (course term) | What you changed | Commit |
 | --- | --- | --- |
-| | | |
-| | | |
+| Non-private field and content coupling, because ParcelService read and assigned Parcel.status directly (Table 2, row 21) | Made status private in Parcel and added getStatus, markStored and markPickedUp, so ParcelService no longer touches the field | 82fdedd |
+| Stamp coupling, because fee received the whole Parcel but used only its size (Table 2, row 23) | Changed fee(Parcel parcel, int days) to fee(int size, int days), and pickUp now passes parcel.getSize() | 31f8e90 |
 
 Output of the program after your fixes, for the commands `store P1 6501 2`, `pickup P1 5` and `staff`, and the content of parcels.csv:
 
 ```text
+Commands: store <code> <studentId> <size 1-3>, pickup <code> <days>, list, staff, quit
+store P1 6501 2
+SMS to 6501: parcel P1 is in locker 2
+Locker 2
+pickup P1 5
+Fee: 30.0
+staff
+P1 6501 PICKED_UP
+Free lockers: 3
+quit
 
+parcels.csv:
+P1,PICKED_UP
 ```
 
 ## Task 4. AI-generated poor and good designs
