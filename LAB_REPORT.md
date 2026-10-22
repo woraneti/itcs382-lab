@@ -166,9 +166,15 @@ bikeshare-good. The new type is one more constant, VISITOR(4), in MemberType.jav
 
 5.1 What does SonarQube check, and what does it not check? Answer with examples from this lab.
 
+SonarQube found the real bugs in ParcelPoint, like the `==` string comparison and the FileWriter that was never closed, which caused the 0.0 fee and the empty parcels.csv. But it does not check design. bikeshare-poor got 19 issues, mostly about System.out, and none of them said that one class does everything.
+
 5.2 When should you not trust the AI review? Give an example from this lab.
 
+I don't trust it when I can't find the problem at the line it gives, or when it uses a course term in a strange way. In the bikeshare-poor review it called the CREATE and APPEND options of a Java library "control coupling", and on my first try it said it read no files at all.
+
 5.3 What will you do differently in Project Phase 2 after this lab?
+
+I will use SonarQube for bugs and the AI review for design, and I will check every AI finding in the code before I write it in the report. I will also fix one problem per commit and run the program after each fix.
 
 ## AI usage declaration
 
