@@ -1,16 +1,16 @@
 # Lab Report, Code Quality and Design Quality
 
-Repository URL:
+Repository URL: https://github.com/woraneti/itcs382-lab
 
 ## Tools
 
 | Item | Version or name |
 | --- | --- |
-| JDK | |
-| Maven | |
-| IDE | |
-| SonarQube for IDE | |
-| AI tool and exact model | |
+| JDK | Eclipse Temurin 25.0.4.1+1 (LTS) |
+| Maven | Apache Maven 3.10.0 |
+| IDE | Visual Studio Code 1.143.0 |
+| SonarQube for IDE | 6.1.1 |
+| AI tool and exact model | ChatGPT, GPT-6.1 Sol (Light) for Prompts A, B and C; Claude Opus 5.5 (Claude Code and Claude chat) for the other help listed in the AI usage declaration |
 
 ## Task 1. SonarQube on the starter code
 
@@ -180,4 +180,7 @@ I will use SonarQube for bugs and the AI review for design, and I will check eve
 
 | AI tool and exact model | Purpose | Files or parts that it produced or changed | How you checked its output |
 | --- | --- | --- | --- |
-| | | | |
+| ChatGPT, GPT-6.1 Sol (Light) | AI review with Prompt A in Task 2 and Task 4 | reviews/parcelpoint-review.md, reviews/bikeshare-poor-review.md, reviews/bikeshare-good-review.md | I opened each file at the line that the AI gave and compared the finding with the code and with the output of the program. The first review runs of the two BikeShare versions read no files, so I ran them again, once with the code pasted and once with the folder path. |
+| ChatGPT, GPT-6.1 Sol (Light) | Writing the two BikeShare programs with Prompts B and C in Task 4 | bikeshare-poor/, bikeshare-good/ | I built both with mvn package, tried rentals and returns, and checked the fees (20 baht for a student for 10 minutes, 15 baht for staff for 5 minutes) by hand. I read the code to check that it followed each prompt. |
+| Claude Code, Claude Opus 5.5 | Making fixes 2 to 5 and the two design fixes in Task 3 | ParcelService.java and Parcel.java in commits 1257389, b8b0265, d1217f6, 5bd06b3, 82fdedd and 31f8e90 | I read each change, checked that mvn package ended with BUILD SUCCESS, ran the program with the input of step C2 and checked the SonarQube panel. Claude Code also rewrote these commits to remove its co-author line, and I checked that the code did not change. |
+| Claude chat, Claude Opus 5.5 | Step-by-step help with setup and git, checking the AI findings against the code, and drafting Tables 1 to 3, the Task 4 table and the answers to 2.1 to 2.3, 4.1 to 4.3 and Task 5. It also saved the ChatGPT answers into the BikeShare and reviews folders. | LAB_REPORT.md, the folder layout of bikeshare-poor and bikeshare-good, reviews/bikeshare-poor-review.md and reviews/bikeshare-good-review.md | I checked every table row against the SonarQube panel and the code, compared the saved files with the ChatGPT answers, and read every answer before I submitted the report. |
