@@ -139,22 +139,28 @@ P1,PICKED_UP
 
 | Item | bikeshare-poor | bikeshare-good |
 | --- | --- | --- |
-| Date | | |
-| AI tool and exact model | | |
-| Prompt (B or C as given, or your changed prompt in full) | | |
-| Builds with mvn package (yes or no) | | |
-| Number of classes, interfaces, enums and records | | |
-| SonarQube issues, total | | |
-| SonarQube issues, by rule | | |
-| AI review findings in Check 1 | | |
-| AI review findings in Check 2 | | |
-| Review output file in the reviews folder | | |
+| Date | 22 October 2026 | 22 October 2026 |
+| AI tool and exact model | ChatGPT, GPT-6.1 Sol (Light) | ChatGPT, GPT-6.1 Sol (Light) |
+| Prompt (B or C as given, or your changed prompt in full) | B as given | C as given |
+| Builds with mvn package (yes or no) | yes | yes |
+| Number of classes, interfaces, enums and records | 1 class, 0 interfaces, 0 enums, 0 records | 4 classes, 1 interface, 2 enums, 2 records (one record is nested in BikeShareService) |
+| SonarQube issues, total | 19 | 1 |
+| SonarQube issues, by rule | java:S106 11, java:S2386 4, java:S1220 1, java:S1172 1, java:S3776 1, java:S7467 1 | java:S106 1 |
+| AI review findings in Check 1 | 5 | 3 |
+| AI review findings in Check 2 | 6 | 4 |
+| Review output file in the reviews folder | reviews/bikeshare-poor-review.md | reviews/bikeshare-good-review.md |
 
 4.1 Did SonarQube report any cohesion or coupling problem in bikeshare-poor? Quote the rule and the message if it did.
 
+No. No rule names cohesion or coupling. The closest is java:S2386, "Make this member "protected".", on BikeShare.java:10 to 13. It flags the public static arrays, which in course terms are common coupling, but SonarQube treats them only as a data safety problem. java:S3776, "Refactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.", on ride() shows that the method is complex, but it does not say that the boolean flag causes control coupling or logical cohesion.
+
 4.2 Did the AI review tell the two versions apart? Give one finding for bikeshare-poor that does not appear for bikeshare-good.
 
+Yes. For bikeshare-poor, the AI reported weak class cohesion, because BikeShare handles console input, rental records, pricing and CSV saving in one class (row 7, BikeShare.java:9 to 104). For bikeshare-good, it reported weak class cohesion as not found. The counts alone do not show the difference well (6 against 4 design findings), because the AI also reported logical cohesion for execute() in BikeShareCli.
+
 4.3 Which version would you rather extend with a new member type, such as a visitor who pays 4 baht per minute, and why?
+
+bikeshare-good. The new type is one more constant, VISITOR(4), in MemberType.java, and parseType already accepts it, so only the help text and the error message in BikeShareCli change. In bikeshare-poor, the meaning of the codes 1 and 2 is spread over the prompt and range check on line 42, the fee on line 67 and the comment on line 13, so I would have to find and change each place by hand, and a missed place would still compile.
 
 ## Task 5. Reflection
 
