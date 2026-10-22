@@ -39,7 +39,7 @@ Table 1. SonarQube issues in the starter code
 | Item | Value |
 | --- | --- |
 | Date | 21 October 2026 |
-| AI tool and exact model | ChatGPT, GPT-5 |
+| AI tool and exact model | ChatGPT, GPT-6.1 Sol (Light) |
 | Commit reviewed | 013de8f |
 | How the AI read the files (attached the files, opened the folder, or pasted the files) | attached the files |
 | Output file in the reviews folder | reviews/parcelpoint-review.md |
